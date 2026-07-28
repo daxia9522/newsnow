@@ -6,3 +6,8 @@ compatibility_date = "2024-10-03"
 binding = "NEWSNOW_DB"
 database_name = "newsnow-db"
 database_id = "48259e0d-3e61-4ac4-aaf4-7b8efe59fc0c"
+
+# 普通环境变量由 wrangler.toml 管理（仪表板只能加「密钥」）
+[vars]
+ENABLE_CACHE = "true"
+INIT_TABLE = "false"
