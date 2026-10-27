@@ -1,0 +1,53 @@
+name: sync-upstream
+
+on:
+  schedule:
+    - cron: "30 0 * * *"   # 每天 00:30 UTC（北京时间 08:30）
+  workflow_dispatch:        # 也允许手动点一下立即同步
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Merge upstream
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://github.com/newsnext/newsnow.git
+          git fetch upstream main
+
+          BEHIND=$(git rev-list --count HEAD..upstream/main)
+          echo "behind upstream by $BEHIND commits"
+          if [ "$BEHIND" -eq 0 ]; then
+            echo "Already up to date."
+            exit 0
+          fi
+
+          if git merge --no-edit upstream/main; then
+            git push origin HEAD:main
+            echo "Merged upstream cleanly and pushed to main."
+          else
+            echo "Conflict detected -> opening PR for manual resolution"
+            git checkout -B sync-upstream
+            git add -A
+            git commit -m "chore: sync upstream (merge conflicts, resolve manually)"
+            git push -f origin sync-upstream
+            if [ -n "$(gh pr list --head sync-upstream --state open --json number -q '.[0].number')" ]; then
+              echo "Open PR already exists."
+            else
+              gh pr create -B main -H sync-upstream \
+                --title "chore: sync with upstream (conflicts)" \
+                --body "自动同步上游 newsnext/newsnow 时遇到合并冲突。请手动解决后合并此 PR（合并后 Cloudflare Pages 会自动重新部署）。"
+            fi
+          fi
