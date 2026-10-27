@@ -44,12 +44,3 @@ export function defineRSSHubSource(route: string, RSSHubOptions?: RSSHubOption, 
     }))
   }
 }
-
-export function proxySource(proxyUrl: string, source: SourceGetter) {
-  return process.env.CF_PAGES
-    ? defineSource(async () => {
-        const data = await myFetch(proxyUrl)
-        return data.items
-      })
-    : source
-}

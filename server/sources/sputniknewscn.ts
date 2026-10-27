@@ -26,4 +26,4 @@ const source = defineSource(async () => {
   return news
 })
 
-export default proxySource("https://newsnow.busiyi.world/api/s?id=sputniknewscn&latest", source)
+export default source
