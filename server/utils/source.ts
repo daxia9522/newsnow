@@ -1,4 +1,3 @@
-import process from "node:process"
 import type { AllSourceID } from "@shared/types"
 import defu from "defu"
 import type { RSSHubOption, RSSHubInfo as RSSHubResponse, SourceGetter, SourceOption } from "#/types"
