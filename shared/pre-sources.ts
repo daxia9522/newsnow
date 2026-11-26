@@ -42,7 +42,7 @@ export const originSources = {
   },
   "zaobao": {
     name: "联合早报",
-    interval: Time.Common,
+    interval: Time.Default,
     type: "realtime",
     column: "world",
     color: "red",
@@ -163,7 +163,7 @@ export const originSources = {
   },
   "thepaper": {
     name: "澎湃新闻",
-    interval: Time.Common,
+    interval: Time.Default,
     type: "hottest",
     column: "china",
     title: "热榜",
@@ -180,7 +180,7 @@ export const originSources = {
     name: "参考消息",
     color: "red",
     column: "world",
-    interval: Time.Common,
+    interval: Time.Default,
     home: "https://china.cankaoxiaoxi.com",
   },
   "pcbeta": {
@@ -332,7 +332,7 @@ export const originSources = {
     name: "靠谱新闻",
     column: "world",
     color: "gray",
-    interval: Time.Common,
+    interval: Time.Default,
     desc: "不一定靠谱，多看多思考",
     home: "https://kaopu.news/",
   },
