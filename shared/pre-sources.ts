@@ -40,6 +40,14 @@ export const originSources = {
     interval: Time.Realtime,
     home: "https://weibo.com",
   },
+  "cctv": {
+    name: "央视网",
+    title: "最新新闻",
+    type: "realtime",
+    column: "china",
+    color: "red",
+    home: "https://news.cctv.com",
+  },
   "zaobao": {
     name: "联合早报",
     interval: Time.Default,

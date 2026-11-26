@@ -33,6 +33,15 @@
     "color": "red",
     "interval": 120000
   },
+  "cctv": {
+    "title": "最新新闻",
+    "name": "央视网",
+    "type": "realtime",
+    "column": "china",
+    "home": "https://news.cctv.com",
+    "color": "red",
+    "interval": 600000
+  },
   "zaobao": {
     "name": "联合早报",
     "type": "realtime",
