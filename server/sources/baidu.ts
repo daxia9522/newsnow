@@ -1,8 +1,8 @@
 interface Res {
+  success: boolean
   data: {
     cards: {
       content: {
-        isTop?: boolean
         word: string
         rawUrl: string
         desc?: string
@@ -12,11 +12,13 @@ interface Res {
 }
 
 export default defineSource(async () => {
-  const rawData: string = await myFetch(`https://top.baidu.com/board?tab=realtime`)
-  const jsonStr = (rawData as string).match(/<!--s-data:(.*?)-->/s)
-  const data: Res = JSON.parse(jsonStr![1])
+  const data: Res = await myFetch(`https://top.baidu.com/api/board?platform=pc&tab=realtime`)
+  const items = data?.data?.cards?.[0]?.content
+  if (data?.success !== true || !Array.isArray(items) || items.length === 0) {
+    throw new Error("百度热搜接口未返回有效榜单")
+  }
 
-  return data.data.cards[0].content.filter(k => !k.isTop).map((k) => {
+  return items.map((k) => {
     return {
       id: k.rawUrl,
       title: k.word,
