@@ -40,7 +40,7 @@
     "column": "world",
     "home": "https://www.zaobao.com",
     "color": "red",
-    "interval": 1800000
+    "interval": 600000
   },
   "coolapk": {
     "title": "今日最热",
@@ -201,7 +201,7 @@
     "column": "china",
     "home": "https://www.thepaper.cn",
     "color": "gray",
-    "interval": 1800000
+    "interval": 600000
   },
   "sputniknewscn": {
     "name": "卫星通讯社",
@@ -215,7 +215,7 @@
     "column": "world",
     "home": "https://china.cankaoxiaoxi.com",
     "color": "red",
-    "interval": 1800000
+    "interval": 600000
   },
   "pcbeta": {
     "redirect": "pcbeta-windows11",
@@ -423,7 +423,7 @@
     "column": "world",
     "home": "https://kaopu.news/",
     "color": "gray",
-    "interval": 1800000
+    "interval": 600000
   },
   "jin10": {
     "name": "金十数据",
